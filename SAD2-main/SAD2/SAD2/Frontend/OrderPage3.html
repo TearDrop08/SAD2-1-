@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        body {
+            background-image: url('M:/SAD2/images/pexels-luisdalvan-1770813.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen p-4">
+    
+    <header class="bg.white{
+        background: rgba(255, 255, 255, 0.8);
+    } shadow-md p-4">
+        <button onclick="goBack()" class="text-white font-semibold px-4 py-2 rounded-lg border border-white">
+            ← Back
+        </button>
+    </header>
+
+    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="relative">
+            <img src="C:\Users\jdptungala\Documents\SAD2-main\SAD2-main\SAD2\SAD2\images\pray back.png" alt="FORTVNE T-Shirt" class="w-full object-cover">
+        </div>
+        <div class="p-6">
+            <h2 class="text-2xl font-bold">FORTVNE GROW YOUR ROOTS</h2>
+            <p class="text-gray-600 mt-2">A high-quality cotton t-shirt with bold graphics on the front and back.</p>
+            <div class="mt-4">
+                <label class="block text-gray-700 font-semibold">Size</label>
+                <select class="mt-1 w-full border rounded-lg p-2">
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>XXL</option>
+                </select>
+            </div>
+            <div class="flex mt-6 space-x-4">
+                <button class="bg-black text-white px-6 py-2 rounded-lg">Add to Cart</button>
+                <button class="border border-black px-6 py-2 rounded-lg">Checkout</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-12 max-w-4xl mx-auto text-center">
+        <h3 class="text-xl font-bold mb-4">PREVIEW</h3>
+        <div class="space-y-4">
+            <img src="C:\Users\jdptungala\Documents\SAD2-main\SAD2-main\SAD2\SAD2\images\412707867_122133418022075253_616105320889724713_n.jpg" alt="Model Wearing FORTVNE Shirt" class="w-full object-cover">
+            <img src="C:\Users\jdptungala\Documents\SAD2-main\SAD2-main\SAD2\SAD2\images\412245105_122133418106075253_2357076851189405040_n (1).jpg" alt="Back Design of FORTVNE Shirt" class="w-full object-cover">
+        </div>
+        <p class="mt-6 text-gray-500 uppercase text-sm">FORTVNE Favors The Bold.</p>
+    </div>
+
+    <script>
+        function addToCart() {
+            let selectedSize = document.getElementById("sizeSelect").value;
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            let product = {
+                name: "FORTVNE HORNET",
+                size: selectedSize,
+                price: 599, 
+                image: "M:/SAD2/images/fortunerobbery.png"
+            };
+
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert("Item added to cart!");
+        }
+
+        function goToCart() {
+            window.location.href = "cart.html";
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    
+</body>
+</html>

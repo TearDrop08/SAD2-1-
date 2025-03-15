@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORTVNE - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+        }
+
+        .cart-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+        }
+        .cart-item button {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .checkout-btn {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: block;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg.white{
+        background: rgba(255, 255, 255, 0.8);
+    } shadow-md p-4">
+        <button onclick="goBack()" class="text-white font-semibold px-4 py-2 rounded-lg border border-white">
+            ← Back
+        </button>
+    </header>
+
+    <div class="cart-container">
+        <h2>Shopping Cart</h2>
+        <div id="cart-items"></div>
+        <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartItemsContainer = document.getElementById("cart-items");
+            cartItemsContainer.innerHTML = "";
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                let cartItem = document.createElement("div");
+                cartItem.classList.add("cart-item");
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <p>${item.name} - PHP ${item.price}</p>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+        }
+
+        function checkout() {
+            if (JSON.parse(localStorage.getItem("cart"))?.length > 0) {
+                alert("Proceeding to checkout...");
+                localStorage.removeItem("cart");
+                loadCart();
+            } else {
+                alert("Your cart is empty.");
+            }
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        document.addEventListener("DOMContentLoaded", loadCart);
+    </script>
+</body>
+</html>

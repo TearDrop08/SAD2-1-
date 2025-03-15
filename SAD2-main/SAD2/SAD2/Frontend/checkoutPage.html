@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-200 p-6">
+
+    <header class="bg.white{
+        background: rgba(255, 255, 255, 0.8);
+    } shadow-md p-4">
+        <button onclick="goBack()" class="text-black font-semibold px-4 py-2 rounded-lg border border-black">
+            ← Back
+        </button>
+    </header>
+
+    <div class="max-w-4xl mx-auto bg-white p-6 shadow-lg rounded-lg">
+        <h2 class="text-xl font-bold mb-4">Place Order Page</h2>
+        
+        <div class="mb-4">
+            <a href="#" class="text-blue-500">&lt; Cart</a>
+        </div>
+        
+        <div class="flex justify-between items-start">
+            <div>
+                <h3 class="font-bold">JUAN DELA CRUZ</h3>
+                <p>09876543211</p>
+                
+                <h4 class="font-bold mt-4">ADDRESS <button id="edit-btn" class="text-blue-500 ml-2">EDIT</button></h4>
+                <p id="address-text">Enter your address</p>
+                <input type="text" id="address-input" class="hidden border p-2 w-full mt-2" value="">
+                <button id="save-btn" class="hidden bg-blue-500 text-white px-4 py-2 rounded mt-2">SAVE</button>
+                
+                <h4 class="font-bold mt-4">DISCOUNT CODE</h4>
+                <input type="text" class="border p-2 w-1/2">
+                <button class="bg-gray-300 px-4 py-2 ml-2">APPLY</button>
+                
+                <h4 class="font-bold mt-4">SELECT PAYMENT METHOD</h4>
+                <div class="flex space-x-4 mt-2">
+                    <button class="border px-6 py-2">Cash On Delivery</button>
+                    <button class="border px-6 py-2 bg-blue-500 text-white">GCash</button>
+                </div>
+            </div>
+            
+            <div class="text-right" id="cart-summary">
+                <p>Your cart is empty.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById("edit-btn").addEventListener("click", function() {
+            document.getElementById("address-text").classList.add("hidden");
+            document.getElementById("address-input").classList.remove("hidden");
+            document.getElementById("save-btn").classList.remove("hidden");
+        });
+
+        document.getElementById("save-btn").addEventListener("click", function() {
+            let newAddress = document.getElementById("address-input").value;
+            document.getElementById("address-text").textContent = newAddress || "Enter your address";
+            document.getElementById("address-text").classList.remove("hidden");
+            document.getElementById("address-input").classList.add("hidden");
+            document.getElementById("save-btn").classList.add("hidden");
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+
+    </script>
+</body>
+</html>
